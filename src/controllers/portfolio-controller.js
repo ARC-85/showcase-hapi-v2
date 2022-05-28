@@ -40,6 +40,7 @@ export const portfolioController = {
         image1: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
         image2: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
         image3: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
+        portfolioCategory: portfolio.portfolioCategory,
       };
       await db.projectStore.addProject(portfolio._id, newProject);
       return h.redirect(`/portfolio/${portfolio._id}`);

@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    {{> showcase-brand}}
+  </div>
+  <div class="navbar-menu" id="navMenuClient">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a id="clientdashboard" class="button" href="/clientdashboard"> Dashboard </a>
+          <a id="favourites" class="button" href="/favourites"> Favourites </a>
+          <a id="clientabout" class="button" href="/clientabout"> About </a>
+          <a id="logout" class="button" href="/logout"> Logout </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.getElementById("{{active}}").classList.add("is-primary");
+</script>

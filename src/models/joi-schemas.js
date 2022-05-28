@@ -12,7 +12,9 @@ export const UserCredentialsSpec = Joi.object()
 export const UserSpec = UserCredentialsSpec.keys({
   firstName: Joi.string().example("Homer").required(),
   lastName: Joi.string().example("Simpson").required(),
+  userType: Joi.string().example("Client").optional(),
   portfolios: Joi.array().optional().example([]),
+  favourites: Joi.array().optional().example([]),
 }).label("UserDetails");
 
 export const UserSpecPlus = UserSpec.keys({
@@ -21,6 +23,26 @@ export const UserSpecPlus = UserSpec.keys({
 }).label("UserDetailsPlus");
 
 export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
+
+export const ClientUserCredentialsSpec = Joi.object()
+  .keys({
+    clientEmail: Joi.string().email().example("homer@simpson.com").required(),
+    clientPassword: Joi.string().example("secret").required(),
+  })
+  .label("ClientUserCredentials");
+
+export const ClientUserSpec = ClientUserCredentialsSpec.keys({
+  clientFirstName: Joi.string().example("Homer").required(),
+  clientLastName: Joi.string().example("Simpson").required(),
+  favourites: Joi.array().optional().example([]),
+}).label("ClientUserDetails");
+
+export const ClientUserSpecPlus = ClientUserSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("ClientUserDetailsPlus");
+
+export const ClientUserArray = Joi.array().items(ClientUserSpecPlus).label("UserArray");
 
 export const ProjectSpec = Joi.object()
   .keys({
@@ -35,6 +57,7 @@ export const ProjectSpec = Joi.object()
     image2: Joi.string().allow("").optional().example("https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg"),
     image3: Joi.string().allow("").optional().example("https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg"),
     portfolioid: IdSpec,
+    portfolioCategory: Joi.string().optional().example("Extensions"),
   })
   .label("Project");
 
@@ -60,6 +83,30 @@ export const PortfolioSpecPlus = PortfolioSpec.keys({
 }).label("PortfolioPlus");
 
 export const PortfolioArraySpec = Joi.array().items(PortfolioSpecPlus).label("PortfolioArray");
+
+export const FavouriteSpec = Joi.object()
+  .keys({
+    favouriteProjectTitle: Joi.string().required().example("Cartoor Farmhouse"),
+    favouriteLatitude: Joi.string().required().example("53.02"),
+    favouriteLongitude: Joi.string().required().example("-9.38"),
+    favouriteStyleDescription: Joi.string().allow("").optional().example("Modern"),
+    favouriteProjectDescription: Joi.string().required().example("An old farmhouse extension"),
+    favouriteAreaSqM: Joi.number().allow("").optional().example("40"),
+    favouritePriceEu: Joi.number().allow("").optional().example("80000"),
+    favouriteImage1: Joi.string().allow("").optional().example("https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg"),
+    favouriteImage2: Joi.string().allow("").optional().example("https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg"),
+    favouriteImage3: Joi.string().allow("").optional().example("https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg"),
+    userid: IdSpec,
+    projectid: IdSpec,
+  })
+  .label("Favourite");
+
+export const FavouriteSpecPlus = FavouriteSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("FavouritePlus");
+
+export const FavouriteArraySpec = Joi.array().items(FavouriteSpecPlus).label("FavouriteArray");
 
 export const JwtAuth = Joi.object()
   .keys({

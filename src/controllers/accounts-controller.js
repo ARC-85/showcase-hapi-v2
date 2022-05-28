@@ -1,5 +1,5 @@
 import { db } from "../models/db.js";
-import { UserSpec, UserCredentialsSpec } from "../models/joi-schemas.js";
+import { UserSpec, UserCredentialsSpec, ClientUserSpec, ClientUserCredentialsSpec } from "../models/joi-schemas.js";
 
 export const accountsController = {
   index: {
@@ -14,6 +14,12 @@ export const accountsController = {
       return h.view("signup-view", { title: "Sign up for Portfolio" });
     },
   },
+  /* showClientSignup: {
+    auth: false,
+    handler: function (request, h) {
+      return h.view("client-signup-view", { title: "Sign up for Portfolio client portal" });
+    },
+  }, */
   signup: {
     auth: false,
     validate: {
@@ -29,6 +35,21 @@ export const accountsController = {
       return h.redirect("/");
     },
   },
+  /* clientSignup: {
+    auth: false,
+    validate: {
+      payload: ClientUserSpec,
+      options: { abortEarly: false },
+      failAction: function(request, h, error) {
+        return h.view("client-signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const clientUser = request.payload;
+      await db.clientUserStore.addClientUser(clientUser);
+      return h.redirect("/");
+    },
+  }, */
   showLogin: {
     auth: false,
     handler: function (request, h) {
@@ -39,6 +60,12 @@ export const accountsController = {
     auth: false,
     handler: function (request, h) {
       return h.view("admin-login-view", { title: "Admin Login to Portfolio" });
+    },
+  },
+  showClientLogin: {
+    auth: false,
+    handler: function (request, h) {
+      return h.view("client-login-view", { title: "Client Login to Portfolio" });
     },
   },
   login: {
@@ -83,6 +110,27 @@ export const accountsController = {
       return h.redirect("/admindashboard");
     },
   },
+  clientLogin: {
+    auth: false,
+    validate: {
+      payload: UserCredentialsSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("client-login-view", { title: "Log in error", errors: error.details }).takeover().code(400);
+      },
+    },
+    handler: async function (request, h) {
+      const { email, password } = request.payload;
+      const user = await db.userStore.getUserByEmail(email);
+      if (!user || user.password !== password || user.userType !== "Client") {
+        console.log("wrong");
+        return h.redirect("/");
+      }
+      request.cookieAuth.set({ id: user._id });
+      console.log("client signin");
+      return h.redirect("/clientdashboard");
+    },
+  },
   logout: {
     handler: function (request, h) {
       request.cookieAuth.clear();
@@ -96,6 +144,13 @@ export const accountsController = {
     }
     return { valid: true, credentials: user };
   },
+  /* async clientValidate(request, session) {
+    const clientUser = await db.clientUserStore.getClientUserById(session.id);
+    if (!clientUser) {
+      return { valid: false };
+    }
+    return { valid: true, credentials: clientUser };
+  }, */
   showProfile: {
     handler: async function (request, h) {
       const user = request.auth.credentials;

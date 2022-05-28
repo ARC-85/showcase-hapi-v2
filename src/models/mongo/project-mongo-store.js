@@ -39,6 +39,11 @@ export const projectMongoStore = {
     await Project.deleteMany({});
   },
 
+  async getProjectsByCategory(category) {
+    const projects = await Project.find({ portfolioCategory: category }).lean();
+    return projects;
+  },
+
   /*
   async updateProject(project, updatedProject) {
     project.title = updatedProject.title;

@@ -1,0 +1,104 @@
+{{> menu-client}}
+
+<section class="section">
+  <div class="title">
+    {{project.projectTitle}}
+  </div>
+</section>
+
+<section class="section">
+  <div class="box box-link-hover-shadow">
+    <a href="/addfavourite/{{project._id}}" class="button is-link">Add To Favourites</a>
+  </div>
+</section>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+          Project Title
+        </td>
+        <td>
+          {{project.projectTitle}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Latitude
+        </td>
+        <td>
+          {{project.latitude}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Longitude
+        </td>
+        <td>
+          {{project.longitude}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Project Style
+        </td>
+        <td>
+          {{project.styleDescription}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Project Description
+        </td>
+        <td>
+          {{project.projectDescription}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Area (sq. meters)
+        </td>
+        <td>
+          {{project.areaSqM}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Project Budget (€)
+        </td>
+        <td>
+          {{project.priceEu}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Image 1
+        </td>
+        <td>
+          <img src={{project.image1}}>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Image 2
+        </td>
+        <td>
+          <img src={{project.image2}}>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Image 3
+        </td>
+        <td>
+          <img src={{project.image3}}>
+        </td>
+      </tr>
+  </tbody>
+</table>

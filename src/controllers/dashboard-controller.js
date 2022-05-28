@@ -11,6 +11,8 @@ export const dashboardController = {
         user: loggedInUser,
         portfolios: portfolios,
       };
+      console.log("this is vendor portfolios");
+      console.log(portfolios);
       return h.view("dashboard-view", viewData);
     },
   },

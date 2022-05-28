@@ -1,5 +1,6 @@
 import { User } from "./user.js";
 import { portfolioMongoStore } from "./portfolio-mongo-store.js";
+import { favouriteMongoStore } from "./favourite-mongo-store.js";
 
 export const userMongoStore = {
   async getAllUsers() {
@@ -29,6 +30,7 @@ export const userMongoStore = {
     const user = await User.findOne({ email: email }).lean();
     if (user) {
       user.portfolios = await portfolioMongoStore.getUserPortfolios(user._id);
+      user.favourites = await favouriteMongoStore.getClientUserFavourites(user._id);
     } 
     return user;
   },
@@ -50,8 +52,9 @@ export const userMongoStore = {
     user.lastName = updatedUser.lastName;
     user.email = updatedUser.email;
     user.password = updatedUser.password;
+    user.userType = updatedUser.userType;
     const query = { _id: user._id };
-    const updatedValues = { $set: {firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password} };
+    const updatedValues = { $set: {firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, userType: user.userType} };
     await User.updateOne(query, updatedValues);
   },
 };

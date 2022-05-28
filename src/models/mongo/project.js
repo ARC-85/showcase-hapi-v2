@@ -17,6 +17,7 @@ const projectSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Portfolio",
   },
+  portfolioCategory: String,
 });
 
 export const Project = Mongoose.model("Project", projectSchema);
