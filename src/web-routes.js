@@ -47,6 +47,7 @@ export const webRoutes = [
   { method: "POST", path: "/userstats", config: adminController.userStats },
   { method: "POST", path: "/updateprofile", config: accountsController.updateProfile },
   { method: "GET", path: "/profile", config: accountsController.showProfile },
+  { method: "GET", path: "/clientprofile", config: accountsController.showClientProfile },
   { method: "GET", path: "/favourites", config: favouritesController.index },
   { method: "GET", path: "/addfavourite/{id}", config: clientProjectController.addFavourite },
   { method: "GET", path: "/favourites/deletefavourite/{id}", config: favouritesController.deleteFavourite },

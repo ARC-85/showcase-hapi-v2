@@ -1,5 +1,8 @@
+import bcrypt from "bcrypt";   
 import { db } from "../models/db.js";
-import { UserSpec, UserCredentialsSpec, ClientUserSpec, ClientUserCredentialsSpec } from "../models/joi-schemas.js";
+import { UserSpec, UserCredentialsSpec } from "../models/joi-schemas.js";
+
+const saltRounds = 10;
 
 export const accountsController = {
   index: {
@@ -31,6 +34,7 @@ export const accountsController = {
     },
     handler: async function (request, h) {
       const user = request.payload;
+      user.password = await bcrypt.hash(user.password, saltRounds);
       await db.userStore.addUser(user);
       return h.redirect("/");
     },
@@ -80,7 +84,8 @@ export const accountsController = {
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
-      if (!user || user.password !== password) {
+      const passwordsMatch = await bcrypt.compare(password, user.password);  
+      if (!user || !passwordsMatch || user.userType !== "Vendor") {                                    
         console.log("wrong");
         return h.redirect("/");
       }
@@ -101,7 +106,8 @@ export const accountsController = {
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
-      if (email !== "admin@email.ie" || password !== "password") {
+      const passwordsMatch = await bcrypt.compare(password, user.password);  
+      if (!user || !passwordsMatch || user.userType !== "Admin") {
         console.log("wrong");
         return h.redirect("/");
       }
@@ -122,7 +128,8 @@ export const accountsController = {
     handler: async function (request, h) {
       const { email, password } = request.payload;
       const user = await db.userStore.getUserByEmail(email);
-      if (!user || user.password !== password || user.userType !== "Client") {
+      const passwordsMatch = await bcrypt.compare(password, user.password);  
+      if (!user || !passwordsMatch || user.userType !== "Client") {
         console.log("wrong");
         return h.redirect("/");
       }
@@ -161,6 +168,16 @@ export const accountsController = {
       return h.view("profile-view", viewData)
     },
   },
+  showClientProfile: {
+    handler: async function (request, h) {
+      const user = request.auth.credentials;
+      const viewData = {
+        title: "Client user profile",
+        user: user, 
+      }
+      return h.view("client-profile-view", viewData)
+    },
+  },
   updateProfile: {
     validate: {
       payload: UserSpec,
@@ -177,11 +194,13 @@ export const accountsController = {
     },
     handler: async function (request, h) {
       const user = request.auth.credentials;
+      const cleanPassword = request.payload.password;
+      const encryptedPassword = await bcrypt.hash(cleanPassword, saltRounds);
       const updatedUser = {
         firstName: request.payload.firstName, 
         lastName: request.payload.lastName,
         email: request.payload.email,
-        password: request.payload.password,
+        password: encryptedPassword,
       }
       await db.userStore.updateUser(user, updatedUser);
       return h.redirect("/");
