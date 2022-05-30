@@ -8,6 +8,8 @@ import { projectController } from "./controllers/project-controller.js";
 import { clientProjectController } from "./controllers/client-project-controller.js";
 import { favouritesController } from "./controllers/favourites-controller.js";
 import { adminController } from "./controllers/admin-controller.js";
+import { reviewsController } from "./controllers/reviews-controller.js";
+import { projectReviewsController } from "./controllers/project-reviews-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -49,4 +51,9 @@ export const webRoutes = [
   { method: "GET", path: "/addfavourite/{id}", config: clientProjectController.addFavourite },
   { method: "GET", path: "/favourites/deletefavourite/{id}", config: favouritesController.deleteFavourite },
   { method: "POST", path: "/filterprojects", config: clientDashboardController.categoryFilter },
+  { method: "POST", path: "/clientproject/{id}/addreview", config: clientProjectController.addReview },
+  { method: "GET", path: "/reviews", config: reviewsController.index },
+  { method: "GET", path: "/reviews/deletereview/{id}", config: reviewsController.deleteReview },
+  { method: "GET", path: "/project/{id}/projectreviews", config: projectReviewsController.index },
+  { method: "POST", path: "/project/{id}/updatereply/{reviewid}", config: projectReviewsController.updateReply },
 ];

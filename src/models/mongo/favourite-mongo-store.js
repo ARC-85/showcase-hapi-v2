@@ -35,5 +35,10 @@ export const favouriteMongoStore = {
 
   async deleteAllFavourites() {
     await Favourite.deleteMany({});
-  }
+  },
+
+  async getClientUserProjectFavourite(id, projectid) {
+    const favourite = await Favourite.find({ userid: id, projectid: projectid }).lean();
+    return favourite;
+  },
 };

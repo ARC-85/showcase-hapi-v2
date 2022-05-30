@@ -6,6 +6,7 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Project Style</th>
+      <th>Average Rating</th>
       <th>Details</th>
     </tr>
   </thead>
@@ -28,6 +29,9 @@
           {{styleDescription}}
         </td>
         <td>
+          {{averageRating}}
+        </td>
+        <td>
           <a href="/clientproject/{{_id}}" class="ui icon button">
             <i class="fas fa-folder-open"></i>
           </a>
@@ -36,3 +40,4 @@
     {{/each}}
   </tbody>
 </table>
+

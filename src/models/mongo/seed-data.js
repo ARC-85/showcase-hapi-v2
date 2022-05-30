@@ -49,7 +49,8 @@ export const seedData = {
       image2: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
       image3: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
       portfolioid: "->portfolios.budget",
-      portfolioCategory: "Extensions"
+      portfolioCategory: "Extensions",
+      averageRating: "NaN",
     },
   }
 };

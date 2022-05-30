@@ -1,13 +1,16 @@
 import { db } from "../models/db.js";
 import { ProjectSpec } from "../models/joi-schemas.js";
+import { projectAnalytics } from "../utils/project-analytics.js";
 
 export const projectController = {
   index: {
     handler: async function (request, h) {
       const project = await db.projectStore.getProjectById(request.params.id);
+      const reviews = await db.reviewStore.getReviewsByProject(project._id);
       const viewData = {
         title: "Project",
         project: project,
+        reviews: reviews,
       };
       return h.view("project-view", viewData);
     },
@@ -155,6 +158,8 @@ export const projectController = {
       return h.redirect(`/project/${project._id}`);
     },
   },
+
+  
 
 
 

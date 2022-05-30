@@ -12,6 +12,7 @@ export const clientDashboardController = {
         // user: loggedInClientUser,
         projects: projects,
       };
+      console.log(projects);
       return h.view("client-dashboard-view", viewData);
     },
   },

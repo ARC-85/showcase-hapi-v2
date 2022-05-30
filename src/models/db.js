@@ -10,6 +10,7 @@ import { clientUserMongoStore } from "./mongo/client-user-mongo-store.js";
 import { portfolioMongoStore } from "./mongo/portfolio-mongo-store.js";
 import { projectMongoStore } from "./mongo/project-mongo-store.js";
 import { favouriteMongoStore } from "./mongo/favourite-mongo-store.js";
+import { reviewMongoStore } from "./mongo/review-mongo-store.js";
 
 export const db = {
   userStore: null,
@@ -17,6 +18,7 @@ export const db = {
   portfolioStore: null,
   projectStore: null,
   favouriteStore: null,
+  reviewStore: null,
 
   init(storeType) {
     switch (storeType) {
@@ -31,6 +33,7 @@ export const db = {
         this.portfolioStore = portfolioMongoStore;
         this.projectStore = projectMongoStore;
         this.favouriteStore = favouriteMongoStore;
+        this.reviewStore = reviewMongoStore;
         connectMongo();
         break;
       default:

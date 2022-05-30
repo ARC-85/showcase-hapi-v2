@@ -77,6 +77,13 @@ export const projectMongoStore = {
     await Project.updateOne(query, updatedValues);
   },
 
+  async updateAverageRating(project, updatedAverageRating) {
+    project.averageRating = updatedAverageRating;
+    const query = { _id: project._id };
+    const updatedValues = { $set: {averageRating: project.averageRating} };
+    await Project.updateOne(query, updatedValues);
+  },
+
   async updateLatitude(project, updatedLatitude) {
     project.latitude = updatedLatitude.latitude;
     const query = { _id: project._id };

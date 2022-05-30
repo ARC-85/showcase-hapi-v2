@@ -15,6 +15,7 @@ export const UserSpec = UserCredentialsSpec.keys({
   userType: Joi.string().example("Client").optional(),
   portfolios: Joi.array().optional().example([]),
   favourites: Joi.array().optional().example([]),
+  reviews: Joi.array().optional().example([]),
 }).label("UserDetails");
 
 export const UserSpecPlus = UserSpec.keys({
@@ -58,6 +59,8 @@ export const ProjectSpec = Joi.object()
     image3: Joi.string().allow("").optional().example("https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg"),
     portfolioid: IdSpec,
     portfolioCategory: Joi.string().optional().example("Extensions"),
+    averageRating: Joi.number().allow("").optional().example("4"),
+    reviews: Joi.array().optional().example([]),
   })
   .label("Project");
 
@@ -107,6 +110,24 @@ export const FavouriteSpecPlus = FavouriteSpec.keys({
 }).label("FavouritePlus");
 
 export const FavouriteArraySpec = Joi.array().items(FavouriteSpecPlus).label("FavouriteArray");
+
+export const ReviewSpec = Joi.object()
+  .keys({
+    reviewTitle: Joi.string().allow("").optional().example("Looks Great!"),
+    rating: Joi.number().required().example("5"),
+    comment: Joi.string().allow("").optional().example("How long did it take?"),
+    reply: Joi.string().allow("").optional().example("About 4 months."),
+    userid: IdSpec,
+    projectid: IdSpec,
+  })
+  .label("Review");
+
+export const ReviewSpecPlus = ReviewSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("ReviewPlus");
+
+export const ReviewArraySpec = Joi.array().items(ReviewSpecPlus).label("ReviewArray");
 
 export const JwtAuth = Joi.object()
   .keys({
