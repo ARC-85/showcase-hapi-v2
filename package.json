@@ -29,6 +29,7 @@
     "@hapi/hapi": "^20.2.1",
     "@hapi/inert": "^6.0.5",
     "@hapi/vision": "^6.1.0",
+    "bcrypt": "^5.0.1",
     "chai": "^4.3.6",
     "curl": "^0.1.4",
     "dotenv": "^16.0.0",
