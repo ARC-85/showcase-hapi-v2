@@ -54,6 +54,7 @@ export const seedData = {
       portfolioid: "->portfolios.budget",
       portfolioCategory: "Extensions",
       averageRating: "NaN",
+      visability: "Public",
     },
   }
 };

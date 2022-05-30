@@ -6,7 +6,7 @@ export const clientDashboardController = {
     handler: async function (request, h) {
       // const loggedInClientUser = request.auth.credentials;
       // const favourites = await db.favouriteStore.getClientUserFavourites(loggedInClientUser._id);
-      const projects = await db.projectStore.getAllProjects();
+      const projects = await db.projectStore.getAllVisableProjects();
       const viewData = {
         title: "Showcase Client Dashboard",
         // user: loggedInClientUser,

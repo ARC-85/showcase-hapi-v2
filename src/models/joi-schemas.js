@@ -61,6 +61,7 @@ export const ProjectSpec = Joi.object()
     portfolioCategory: Joi.string().optional().example("Extensions"),
     averageRating: Joi.number().allow("").optional().example("4"),
     reviews: Joi.array().optional().example([]),
+    visability: Joi.string().required().example("Private"),
   })
   .label("Project");
 
