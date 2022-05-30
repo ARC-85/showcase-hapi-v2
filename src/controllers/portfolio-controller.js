@@ -42,6 +42,7 @@ export const portfolioController = {
         image3: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
         portfolioCategory: portfolio.portfolioCategory,
         averageRating: "NaN",
+        visability: request.payload.visability,
       };
       await db.projectStore.addProject(portfolio._id, newProject);
       return h.redirect(`/portfolio/${portfolio._id}`);

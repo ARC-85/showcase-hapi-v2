@@ -39,19 +39,16 @@ export const projectMongoStore = {
     await Project.deleteMany({});
   },
 
-  async getProjectsByCategory(category) {
-    const projects = await Project.find({ portfolioCategory: category }).lean();
+  async getAllVisableProjects() {
+    const projects = await Project.find({ visability: "Public" }).lean();
     return projects;
   },
 
-  /*
-  async updateProject(project, updatedProject) {
-    project.title = updatedProject.title;
-    project.artist = updatedProject.artist;
-    project.duration = updatedProject.duration;
-    await project.save();
+  async getProjectsByCategory(category) {
+    const projects = await Project.find({ portfolioCategory: category, visability: "Public" }).lean();
+    return projects;
   },
-  */
+
 
   async updateProject(project, updatedProject) {
     project.projectTitle = updatedProject.projectTitle;
@@ -64,9 +61,10 @@ export const projectMongoStore = {
     project.image1 = updatedProject.image1;
     project.image2 = updatedProject.image2;
     project.image3 = updatedProject.image3;
+    project.visability = updatedProject.visability;
     console.log(project._id)
     const query = { _id: project._id };
-    const updatedValues = { $set: {projectTitle: project.projectTitle, latitude: project.latitude, longitude: project.longitude, styleDescription: project.styleDescription, projectDescription: project.projectDescription, areaSqM: project.areaSqM, priceEu: project.priceEu, image1: project.image1, image2: project.image2, image3: project.image3} };
+    const updatedValues = { $set: {projectTitle: project.projectTitle, latitude: project.latitude, longitude: project.longitude, styleDescription: project.styleDescription, projectDescription: project.projectDescription, areaSqM: project.areaSqM, priceEu: project.priceEu, image1: project.image1, image2: project.image2, image3: project.image3, visability: project.visability} };
     await Project.updateOne(query, updatedValues);
   },
 

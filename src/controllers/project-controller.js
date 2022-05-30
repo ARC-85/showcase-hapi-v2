@@ -43,6 +43,7 @@ export const projectController = {
         image1: request.payload.image1,
         image2: request.payload.image2,
         image3: request.payload.image3,
+        visability: request.payload.visability,
       };
       await db.projectStore.updateProject(project, updatedProject);
       return h.redirect(`/project/${project._id}`);

@@ -19,6 +19,7 @@ const projectSchema = new Schema({
   },
   portfolioCategory: String,
   averageRating: String,
+  visability: String,
 });
 
 export const Project = Mongoose.model("Project", projectSchema);
