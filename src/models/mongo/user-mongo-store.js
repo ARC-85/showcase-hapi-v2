@@ -30,7 +30,6 @@ export const userMongoStore = {
     const user = await User.findOne({ email: email }).lean();
     if (user) {
       user.portfolios = await portfolioMongoStore.getUserPortfolios(user._id);
-      user.favourites = await favouriteMongoStore.getClientUserFavourites(user._id);
     } 
     return user;
   },

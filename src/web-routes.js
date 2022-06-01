@@ -10,6 +10,13 @@ import { favouritesController } from "./controllers/favourites-controller.js";
 import { adminController } from "./controllers/admin-controller.js";
 import { reviewsController } from "./controllers/reviews-controller.js";
 import { projectReviewsController } from "./controllers/project-reviews-controller.js";
+import { noticeController } from "./controllers/notice-controller.js";
+import { noticeUpdateController } from "./controllers/notice-update-controller.js";
+import { vendorNoticeController } from "./controllers/vendor-notice-controller.js";
+import { vendorNoticeDetailsController } from "./controllers/vendor-notice-details-controller.js";
+import { clientAnswerController } from "./controllers/client-answer-controller.js";
+import { vendorAnswerController } from "./controllers/vendor-answer-controller.js";
+import { vendorDiscussionController } from "./controllers/vendor-discussion-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -57,4 +64,24 @@ export const webRoutes = [
   { method: "GET", path: "/reviews/deletereview/{id}", config: reviewsController.deleteReview },
   { method: "GET", path: "/project/{id}/projectreviews", config: projectReviewsController.index },
   { method: "POST", path: "/project/{id}/updatereply/{reviewid}", config: projectReviewsController.updateReply },
+  { method: "GET", path: "/notices", config: noticeController.index },
+  { method: "POST", path: "/addnotice", config: noticeController.addNotice },
+  { method: "GET", path: "/deletenotice/{id}", config: noticeController.deleteNotice },
+  { method: "GET", path: "/noticeupdate/{id}", config: noticeUpdateController.index },
+  { method: "POST", path: "/updatenotice/{id}", config: noticeUpdateController.updateNotice },
+  { method: "GET", path: "/vendornotices", config: vendorNoticeController.index },
+  { method: "GET", path: "/vendornotice/{id}", config: vendorNoticeDetailsController.index },
+  { method: "POST", path: "/filternotices", config: vendorNoticeController.categoryFilter },
+  { method: "GET", path: "/deletenoticevendor/{id}", config: vendorNoticeController.deleteNotice },
+  { method: "POST", path: "/vendornotice/{id}/adddiscussion", config: vendorNoticeDetailsController.addDiscussion },
+  { method: "GET", path: "/vendornotice/{id}/deletediscussion/{discussionid}", config: vendorNoticeDetailsController.deleteDiscussion },
+  { method: "GET", path: "/clientnotice/{id}/deletediscussion/{discussionid}", config: noticeUpdateController.deleteDiscussion },
+  { method: "GET", path: "/clientnotice/{noticeid}/clientanswers/{id}", config: clientAnswerController.index },
+  { method: "POST", path: "/clientdiscussion/{id}/addanswer", config: clientAnswerController.addAnswer },
+  { method: "GET", path: "/clientdiscussion/{id}/deleteanswer/{answerid}", config: clientAnswerController.deleteAnswer },
+  { method: "GET", path: "/vendornotice/{noticeid}/vendoranswers/{id}", config: vendorAnswerController.index },
+  { method: "POST", path: "/vendordiscussion/addanswer/{id}", config: vendorAnswerController.addAnswer },
+  { method: "GET", path: "/vendordiscussion/{id}/deleteanswer/{answerid}", config: vendorAnswerController.deleteAnswer },
+  { method: "GET", path: "/vendordiscussions", config: vendorDiscussionController.index },
+  { method: "GET", path: "/deletediscussion/{id}", config: vendorDiscussionController.deleteDiscussion },
 ];

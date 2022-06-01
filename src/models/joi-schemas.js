@@ -62,6 +62,8 @@ export const ProjectSpec = Joi.object()
     averageRating: Joi.number().allow("").optional().example("4"),
     reviews: Joi.array().optional().example([]),
     visability: Joi.string().required().example("Private"),
+    vendorFirstName: Joi.string().optional().example("Bart"),
+    vendorLastName: Joi.string().optional().example("Simpson"),
   })
   .label("Project");
 
@@ -114,6 +116,9 @@ export const FavouriteArraySpec = Joi.array().items(FavouriteSpecPlus).label("Fa
 
 export const ReviewSpec = Joi.object()
   .keys({
+    reviewDate: Joi.string().allow("").optional().example("Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)"),
+    clientFirstName: Joi.string().allow("").optional().example("Homer"),
+    vendorFirstName: Joi.string().allow("").optional().example("Bart"),
     reviewTitle: Joi.string().allow("").optional().example("Looks Great!"),
     rating: Joi.number().required().example("5"),
     comment: Joi.string().allow("").optional().example("How long did it take?"),
@@ -129,6 +134,65 @@ export const ReviewSpecPlus = ReviewSpec.keys({
 }).label("ReviewPlus");
 
 export const ReviewArraySpec = Joi.array().items(ReviewSpecPlus).label("ReviewArray");
+
+export const NoticeSpec = Joi.object()
+  .keys({
+    noticeDate: Joi.string().allow("").optional().example("Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)"),
+    clientFirstName: Joi.string().allow("").optional().example("Homer"),
+    clientLastName: Joi.string().allow("").optional().example("Simpson"),
+    noticeTitle: Joi.string().allow("").optional().example("Looking for architects"),
+    noticeLatitude: Joi.string().required().example("53.02"),
+    noticeLongitude: Joi.string().required().example("-9.38"),
+    noticeCategory: Joi.string().required().example("Extensions"),
+    vendorCategory: Joi.string().allow("").optional().example("Architects"),
+    noticeStyle: Joi.string().allow("").optional().example("Modern"),
+    request: Joi.string().required().example("We're looking for architects to apply an extension to our old farmhouse"),
+    userid: IdSpec,
+  })
+  .label("Review");
+
+export const NoticeSpecPlus = NoticeSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("NoticePlus");
+
+export const NoticeArraySpec = Joi.array().items(NoticeSpecPlus).label("NoticeArray");
+
+export const DiscussionSpec = Joi.object()
+  .keys({
+    discussionTitle: Joi.string().required().example("We'd like to help."),
+    discussionDate: Joi.string().allow("").optional().example("Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)"),
+    vendorFirstName: Joi.string().allow("").optional().example("Bart"),
+    vendorLastName: Joi.string().allow("").optional().example("Simpson"),
+    userid: IdSpec,
+    noticeid: IdSpec,
+  })
+  .label("Discussion");
+
+export const DiscussionSpecPlus = DiscussionSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("DiscussionPlus");
+
+export const DiscussionArraySpec = Joi.array().items(DiscussionSpecPlus).label("DiscussionArray");
+
+export const AnswerSpec = Joi.object()
+  .keys({
+    answerDate: Joi.string().allow("").optional().example("Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)"),
+    userFirstName: Joi.string().allow("").optional().example("Bart"),
+    userLastName: Joi.string().allow("").optional().example("Simpson"),
+    answerContent: Joi.string().required().example("Thanks for posting, can you tell me more?"),
+    userid: IdSpec,
+    discussionid: IdSpec,
+  })
+  .label("Answer");
+
+export const AnswerSpecPlus = AnswerSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("AnswerPlus");
+
+export const AnswerArraySpec = Joi.array().items(AnswerSpecPlus).label("AnswerArray");
 
 export const JwtAuth = Joi.object()
   .keys({

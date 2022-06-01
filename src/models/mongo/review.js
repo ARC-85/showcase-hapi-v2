@@ -3,6 +3,9 @@ import Mongoose from "mongoose";
 const { Schema } = Mongoose;
 
 const reviewSchema = new Schema({
+  reviewDate: String,
+  clientFirstName: String,
+  vendorFirstName: String,
   reviewTitle: String,
   rating: Number,
   comment: String,

@@ -1,42 +1,46 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Project Title</th>
+      <th>Notice Date</th>
+      <th>Notice Poster</th>
+      <th>Notice Title</th>
       <th>Category</th>
-      <th>Vendor Name</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Project Style</th>
-      <th>Average Rating</th>
+      <th>Vendor Type</th>
       <th>Details</th>
     </tr>
   </thead>
   <tbody>
-    {{#each projects}}
+    {{#each notices}}
       <tr>
         <td>
-          {{projectTitle}}
+          {{noticeDate}}
         </td>
         <td>
-          {{portfolioCategory}}
+          {{clientFirstName}} {{clientLastName}}
         </td>
         <td>
-          {{vendorFirstName}} {{vendorLastName}}
+          {{noticeTitle}}
         </td>
         <td>
-          {{latitude}}
+          {{noticeCategory}}
         </td>
         <td>
-          {{longitude}}
+          {{noticeLatitude}}
         </td>
         <td>
-          {{styleDescription}}
+          {{noticeLongitude}}
         </td>
         <td>
-          {{averageRating}}
+          {{noticeStyle}}
         </td>
         <td>
-          <a href="/clientproject/{{_id}}" class="ui icon button">
+          {{vendorCategory}}
+        </td>
+        <td>
+          <a href="/vendornotice/{{_id}}" class="ui icon button">
             <i class="fas fa-folder-open"></i>
           </a>
         </td>
@@ -44,4 +48,5 @@
     {{/each}}
   </tbody>
 </table>
+
 

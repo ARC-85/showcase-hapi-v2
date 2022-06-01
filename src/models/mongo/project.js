@@ -20,6 +20,8 @@ const projectSchema = new Schema({
   portfolioCategory: String,
   averageRating: String,
   visability: String,
+  vendorFirstName: String,
+  vendorLastName: String,
 });
 
 export const Project = Mongoose.model("Project", projectSchema);

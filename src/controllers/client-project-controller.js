@@ -82,6 +82,8 @@ export const clientProjectController = {
       const newReview = {
         userid: loggedInClientUser._id,
         projectid: project._id,
+        reviewDate: new Date(),
+        clientFirstName: loggedInClientUser.firstName,
         reviewTitle: request.payload.reviewTitle,
         rating: Number(request.payload.rating), 
         comment: request.payload.comment,

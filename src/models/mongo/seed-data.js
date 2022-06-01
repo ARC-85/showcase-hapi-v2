@@ -55,6 +55,85 @@ export const seedData = {
       portfolioCategory: "Extensions",
       averageRating: "NaN",
       visability: "Public",
+      vendorFirstName: "Bart",
+      vendorLastName: "Simpson",
     },
-  }
+  },
+  favourites: {
+    _model : "Favourite",
+    favourite_1 : {
+      favouriteProjectTitle: "Cartoor Farmhouse",
+      favouriteLatitude: "53.3378",
+      favouriteLongitude: "-9.18",
+      favouriteStyleDescription: "Modern",
+      favouriteProjectDescription: "An old farmhouse in Moycullen area",
+      favouriteAreaSqM: 40,
+      favouritePriceEu: 70000,
+      favouriteImage1: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
+      favouriteImage2: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
+      favouriteImage3: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
+      projectid: "->projects.project_1",
+      userid: "->users.homer",
+    },
+  },
+  reviews: {
+    _model : "Review",
+    review_1 : {
+      reviewDate: "Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)",
+      clientFirstName: "Homer",
+      vendorFirstName: "Bart",
+      reviewTitle: "Looks Great!",
+      rating: 4,
+      comment: "How long did it take?",
+      reply: "4 months.",
+      projectid: "->projects.project_1",
+      userid: "->users.homer"
+    },
+  },
+  notices: {
+    _model : "Notice",
+    notice_1 : {
+      noticeDate: "Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)",
+      clientFirstName: "Homer",
+      clientLastName: "Simpson",
+      noticeTitle: "Architects wanted",
+      noticeLatitude: "53.3378",
+      noticeLongitude: "-9.18",
+      vendorCategory: "Architect",
+      noticeCategory: "Extensions",
+      noticeStyle: "Modern",
+      request: "We would like an architect to design our modern farmhouse extension",
+      userid: "->users.homer"
+    },
+  },
+  discussions: {
+    _model : "Discussion",
+    discussion_1 : {
+      discussionTitle: "We think we can help!",
+      vendorFirstName: "Bart",
+      vendorLastName: "Simpson",
+      discussionDate: "Wed Jun 01 2022 12:44:51 GMT+0100 (Irish Standard Time)",
+      noticeid: "->notices.notice_1",
+      userid: "->users.bart"
+    },
+  },
+  answers: {
+    _model : "Answer",
+    answer_1 : {
+      answerDate: "Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)",
+      userFirstName: "Bart",
+      userLastName: "Simpson",
+      answerContent: "Thanks for posting, can you tell me more?",
+      discussionid: "->discussions.discussion_1",
+      userid: "->users.bart"
+    },
+    answer_2 : {
+      answerDate: "Wed Jun 01 2022 12:47:51 GMT+0100 (Irish Standard Time)",
+      userFirstName: "Homer",
+      userLastName: "Simpson",
+      answerContent: "We are after a good design within our budget.",
+      discussionid: "->discussions.discussion_1",
+      userid: "->users.homer"
+    },
+  },
 };

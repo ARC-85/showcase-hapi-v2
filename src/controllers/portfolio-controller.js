@@ -29,6 +29,7 @@ export const portfolioController = {
     },
     handler: async function (request, h) {
       const portfolio = await db.portfolioStore.getPortfolioById(request.params.id);
+      const loggedInUser = request.auth.credentials;
       const newProject = {
         projectTitle: request.payload.projectTitle,
         latitude: request.payload.latitude,
@@ -43,6 +44,8 @@ export const portfolioController = {
         portfolioCategory: portfolio.portfolioCategory,
         averageRating: "NaN",
         visability: request.payload.visability,
+        vendorFirstName: loggedInUser.firstName,
+        vendorLastName: loggedInUser.lastName,
       };
       await db.projectStore.addProject(portfolio._id, newProject);
       return h.redirect(`/portfolio/${portfolio._id}`);

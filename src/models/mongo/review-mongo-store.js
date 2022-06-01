@@ -49,8 +49,9 @@ export const reviewMongoStore = {
 
   async updateReply(review, updatedReply) {
     review.reply = updatedReply.reply;
+    review.vendorFirstName = updatedReply.vendorFirstName;
     const query = { _id: review._id };
-    const updatedValues = { $set: {reply: review.reply} };
+    const updatedValues = { $set: {reply: review.reply, vendorFirstName: review.vendorFirstName} };
     await Review.updateOne(query, updatedValues);
   },
 };
