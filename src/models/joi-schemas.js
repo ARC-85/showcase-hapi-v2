@@ -25,26 +25,6 @@ export const UserSpecPlus = UserSpec.keys({
 
 export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
-export const ClientUserCredentialsSpec = Joi.object()
-  .keys({
-    clientEmail: Joi.string().email().example("homer@simpson.com").required(),
-    clientPassword: Joi.string().example("secret").required(),
-  })
-  .label("ClientUserCredentials");
-
-export const ClientUserSpec = ClientUserCredentialsSpec.keys({
-  clientFirstName: Joi.string().example("Homer").required(),
-  clientLastName: Joi.string().example("Simpson").required(),
-  favourites: Joi.array().optional().example([]),
-}).label("ClientUserDetails");
-
-export const ClientUserSpecPlus = ClientUserSpec.keys({
-  _id: IdSpec,
-  __v: Joi.number(),
-}).label("ClientUserDetailsPlus");
-
-export const ClientUserArray = Joi.array().items(ClientUserSpecPlus).label("UserArray");
-
 export const ProjectSpec = Joi.object()
   .keys({
     projectTitle: Joi.string().required().example("Cartoor Farmhouse"),

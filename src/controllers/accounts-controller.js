@@ -39,21 +39,6 @@ export const accountsController = {
       return h.redirect("/");
     },
   },
-  /* clientSignup: {
-    auth: false,
-    validate: {
-      payload: ClientUserSpec,
-      options: { abortEarly: false },
-      failAction: function(request, h, error) {
-        return h.view("client-signup-view", { title: "Sign up error", errors: error.details }).takeover().code(400);
-      },
-    },
-    handler: async function (request, h) {
-      const clientUser = request.payload;
-      await db.clientUserStore.addClientUser(clientUser);
-      return h.redirect("/");
-    },
-  }, */
   showLogin: {
     auth: false,
     handler: function (request, h) {
@@ -151,13 +136,6 @@ export const accountsController = {
     }
     return { valid: true, credentials: user };
   },
-  /* async clientValidate(request, session) {
-    const clientUser = await db.clientUserStore.getClientUserById(session.id);
-    if (!clientUser) {
-      return { valid: false };
-    }
-    return { valid: true, credentials: clientUser };
-  }, */
   showProfile: {
     handler: async function (request, h) {
       const user = request.auth.credentials;

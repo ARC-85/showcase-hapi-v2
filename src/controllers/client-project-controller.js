@@ -28,16 +28,6 @@ export const clientProjectController = {
     },
   },
 
-  /* updateAverageRating: {
-    handler: async function (request, h) {
-      const project = await db.projectStore.getProjectById(request.params.id);
-      const averageRating = await projectAnalytics.getAverageRating(project._id);
-      await db.projectStore.updateAverageRating(project, averageRating);
-      return h.redirect(`/project/${project._id}`);
-    },
-  }, */
-
-
   addFavourite: {
     /* validate: {
       payload: FavouriteSpec,

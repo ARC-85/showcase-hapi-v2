@@ -17,13 +17,10 @@ export const vendorNoticeController = {
 
   categoryFilter: {
     handler: async function (request, h) {
-      // const loggedInClientUser = request.auth.credentials;
-      // const favourites = await db.favouriteStore.getClientUserFavourites(loggedInClientUser._id);
       const noticeCategory = await request.payload.noticeCategory;
       const notices = await db.noticeStore.getNoticesByCategory(noticeCategory);
       const viewData = {
         title: "Showcase Notices",
-        // user: loggedInClientUser,
         notices: notices,
       };
       return h.view("vendor-notices-view", viewData);
