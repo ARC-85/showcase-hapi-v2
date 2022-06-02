@@ -53,7 +53,7 @@ export const seedData = {
       image3: "https://res.cloudinary.com/whodunya/image/upload/v1648074501/showcase/house_icon_xtwll0.jpg",
       portfolioid: "->portfolios.budget",
       portfolioCategory: "Extensions",
-      averageRating: "NaN",
+      averageRating: "4",
       visability: "Public",
       vendorFirstName: "Bart",
       vendorLastName: "Simpson",

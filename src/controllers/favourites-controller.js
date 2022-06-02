@@ -4,7 +4,7 @@ export const favouritesController = {
   index: {
     handler: async function (request, h) {
       const loggedInClientUser = request.auth.credentials;
-      const favourites = await db.favouriteStore.getClientUserFavourites(loggedIn._id);
+      const favourites = await db.favouriteStore.getClientUserFavourites(loggedInClientUser._id);
       const viewData = {
         title: "Showcase Client Favourites",
         clientUser: loggedInClientUser,
