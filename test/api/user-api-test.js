@@ -14,7 +14,7 @@ suite("User API tests", () => {
     await showcaseService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      users[0] = await showcaseService.createUser(testUsers[i]);
+      users[i] = await showcaseService.createUser(testUsers[i]);
     }
     await showcaseService.createUser(maggie);
     await showcaseService.authenticate(maggieCredentials);
