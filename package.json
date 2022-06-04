@@ -8,14 +8,20 @@
     "start": "node src/server.js",
     "lint": "eslint . --ext .js",
     "test": "mocha --ui tdd test/**/*.js",
+    "coverage": "nyc --reporter=text mocha test/models/user-model-test.js",
+    "c8coverage": "c8 mocha -- test/models/user-model-test.js",
     "testmodels": "./node_modules/mocha/bin/mocha --ui tdd test/models/**/*.js",
     "testapi": "./node_modules/mocha/bin/mocha --ui tdd test/api/**/*.js",
-    "dev": "nodemon src/server.js --ignore 'src/models/json/*.json'"
+    "dev": "nodemon src/server.js --ignore 'src/models/json/*.json'",
+    "cypress:open": "cypress open",
+    "cypresstest": "npx cypress run"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@playwright/test": "^1.22.2",
     "axios": "^0.26.0",
+    "cypress": "^10.0.2",
     "eslint": "^8.4.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
@@ -41,6 +47,7 @@
     "lowdb": "^3.0.0",
     "mais-mongoose-seeder": "^1.0.7",
     "mongoose": "^6.2.1",
+    "nyc": "^15.1.0",
     "uuid": "^8.3.2"
   }
 }

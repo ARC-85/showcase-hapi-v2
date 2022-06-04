@@ -122,3 +122,9 @@ dist
 .pnp.*
 
 .env
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/playwright/.cache/

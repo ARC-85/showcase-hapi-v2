@@ -20,7 +20,7 @@ export const projectReviewsController = {
       const project = await db.projectStore.getProjectById(request.params.id);
       const review = await db.reviewStore.getReviewById(request.params.reviewid);
       const updatedReply = {
-        vendorFirstName: loggedInUser.fisrtName,
+        vendorFirstName: loggedInUser.firstName,
         reply: request.payload.reply,
       };
       await db.reviewStore.updateReply(review, updatedReply);

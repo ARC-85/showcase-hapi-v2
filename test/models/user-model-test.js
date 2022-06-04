@@ -2,7 +2,8 @@ import { assert } from "chai";
 import { db } from "../../src/models/db.js";
 import { maggie, testUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
-
+/* c8 ignore start */
+/* istanbul ignore next */
 suite("User Model tests", () => {
 
   setup(async () => {
@@ -13,7 +14,7 @@ suite("User Model tests", () => {
       testUsers[i] = await db.userStore.addUser(testUsers[i]);
     }
   });
-
+/* c8 ignore stop */
   test("create a user", async () => {
     const newUser = await db.userStore.addUser(maggie);
     assertSubset(maggie, newUser);
